@@ -14,7 +14,7 @@ data_entrenamiento = './data/entrenamiento'
 data_validacion = './data/validacion'
 
 """
-Parameters
+Parametros
 """
 epocas=15
 longitud, altura = 150, 150
@@ -30,7 +30,7 @@ clases = 2
 lr = 0.0004
 
 
-##Preparamos nuestras imagenes
+#Preparamos nuestras imagenes
 
 entrenamiento_datagen = ImageDataGenerator(
     rescale=1. / 255,
