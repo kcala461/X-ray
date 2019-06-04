@@ -23,16 +23,14 @@ def predict(file):
   answer = np.argmax(result)
   if answer == 0:
         y = "Normal"
-        print("Normal")
   elif answer == 1:
         y = "Neumonia"
-        print("Neumonia")
 
   return y
 
 
 
-print("---- xd? ---")
+print("---- Probar ---")
 predict('./probar/Neumonia/Virus/person1676_virus_2892.jpeg')
 
 
@@ -52,21 +50,23 @@ def home():
     return render_template("inicio.html")
 
 @app.route("/subirImagen",methods=["GET","POST"])
-def subir_imagen():
-    if request.method == "POST":
-        f = request.files["ourfile"]
-        filename = f.filename
-        f.save(os.path.join(app.config["UPLOAD_FOLDER"],filename))
-        x = './uploads/'+filename
-        print(x)
-        res = predict(x)
-        print("La predicción es: " + res)
-        return render_template("prediccion.html", res = res)
+def subir_imagen():   
 
     return render_template("subir_imagen.html")
 
 
+@app.route("/predicir",methods=["GET","POST"])
+def predicir():
+      if request.method == "POST":
+        f = request.files["ourfile"]
+        filename = f.filename
+        f.save(os.path.join(app.config["UPLOAD_FOLDER"],filename))
+        x = './uploads/'+filename
+        res = predict(x)
+        print("La predicción es: " + res)
 
+      return render_template("prediccion.html",res=res)
+      
 
 
 
